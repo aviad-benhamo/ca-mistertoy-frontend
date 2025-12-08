@@ -1,0 +1,25 @@
+.toy-preview {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: space-between;
+}
+
+.toy-preview h4 {
+    text-transform: capitalize;
+    color: var(--clr1);
+    font-size: 1.2em;
+    margin-bottom: 0.5em;
+}
+
+.toy-preview img {
+    max-width: 120px;
+    margin: 0 auto 1em;
+    object-fit: contain;
+}
+
+.toy-preview p {
+    font-weight: bold;
+    color: var(--gray3);
+}

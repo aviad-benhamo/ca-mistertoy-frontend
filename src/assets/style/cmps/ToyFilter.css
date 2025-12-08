@@ -1,0 +1,23 @@
+.toy-filter {
+    background-color: var(--clr1bg-light);
+    padding: 1.5em;
+    border-radius: 8px;
+    margin-bottom: 2em;
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    flex-wrap: wrap;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.toy-filter label {
+    margin-right: 0.5em;
+    font-weight: bold;
+}
+
+.toy-filter input,
+.toy-filter select {
+    padding: 0.5em;
+    border: 1px solid var(--gray2);
+    border-radius: 4px;
+}
