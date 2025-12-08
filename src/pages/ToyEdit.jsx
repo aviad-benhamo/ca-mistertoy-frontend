@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
-
 import { toyService } from '../services/toy.service.js'
 import { saveToy } from '../store/actions/toy.actions.js'
 import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service.js'
@@ -34,12 +33,11 @@ export function ToyEdit() {
         setToyToEdit((prevToy) => ({ ...prevToy, [field]: value }))
     }
 
-    // Handle multi-select for labels
     function onLabelChange(label) {
         setToyToEdit(prevToy => {
             const labels = prevToy.labels.includes(label)
-                ? prevToy.labels.filter(l => l !== label) // Remove
-                : [...prevToy.labels, label] // Add
+                ? prevToy.labels.filter(l => l !== label)
+                : [...prevToy.labels, label]
             return { ...prevToy, labels }
         })
     }

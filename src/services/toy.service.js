@@ -19,22 +19,38 @@ export const toyService = {
 _createToys()
 
 function query(filterBy = {}) {
+    console.log('toyService query received filter:', filterBy)
+
+
     return storageService.query(STORAGE_KEY)
         .then(toys => {
-            if (filterBy.txt) {
-                const regExp = new RegExp(filterBy.txt, 'i')
+            if (filterBy.name) {
+                const regExp = new RegExp(filterBy.name, 'i')
                 toys = toys.filter(toy => regExp.test(toy.name))
             }
-            if (filterBy.inStock !== undefined && filterBy.inStock !== 'all') {
+
+            if (filterBy.inStock !== undefined && filterBy.inStock !== '' && filterBy.inStock !== 'all') {
                 const isInStock = (filterBy.inStock === 'true' || filterBy.inStock === true)
                 toys = toys.filter(toy => toy.inStock === isInStock)
             }
+
             if (filterBy.labels && filterBy.labels.length) {
-                // Returns toys that have at least one of the selected labels
                 toys = toys.filter(toy =>
-                    toy.labels.some(label => filterBy.labels.includes(label))
+                    toy.labels && toy.labels.some(label => filterBy.labels.includes(label))
                 )
             }
+
+            // (Sort)
+            if (filterBy.sortBy) {
+                if (filterBy.sortBy === 'name') {
+                    toys.sort((t1, t2) => t1.name.localeCompare(t2.name))
+                } else if (filterBy.sortBy === 'price') {
+                    toys.sort((t1, t2) => t1.price - t2.price)
+                } else if (filterBy.sortBy === 'createdAt') {
+                    toys.sort((t1, t2) => t1.createdAt - t2.createdAt)
+                }
+            }
+
             return toys
         })
 }

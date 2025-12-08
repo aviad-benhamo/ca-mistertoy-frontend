@@ -30,11 +30,18 @@ export function ToyDetails() {
             <h3>Price: ${toy.price}</h3>
 
             <div className="toy-img">
-                <img src={toy.imgUrl} alt={toy.name} />
+                <img
+                    src={toy.imgUrl || 'https://via.placeholder.com/150'}
+                    alt={toy.name}
+                    onError={({ currentTarget }) => {
+                        currentTarget.onerror = null;
+                        currentTarget.src = 'https://via.placeholder.com/150';
+                    }}
+                />
             </div>
 
             <p>
-                <strong>Labels:</strong> {toy.labels.join(', ')}
+                <strong>Labels:</strong> {toy.labels && toy.labels.join(', ')}
             </p>
 
             <p>
@@ -42,7 +49,7 @@ export function ToyDetails() {
             </p>
 
             <p>
-                <strong>Added at:</strong> {new Date(toy.createdAt).toLocaleDateString()}
+                <strong>Added at:</strong> {toy.createdAt ? new Date(toy.createdAt).toLocaleDateString() : 'N/A'}
             </p>
 
             <div className="actions">

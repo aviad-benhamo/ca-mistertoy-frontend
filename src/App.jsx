@@ -1,7 +1,7 @@
 import { Route, Routes, Link } from 'react-router-dom'
+import { ToyIndex } from './pages/ToyIndex.jsx'
 import { ToyEdit } from './pages/ToyEdit.jsx'
 import { ToyDetails } from './pages/ToyDetails.jsx'
-import './App.css'
 
 function App() {
     return (
@@ -18,11 +18,8 @@ function App() {
 
             <main className="container">
                 <Routes>
-                    {/* זמנית נפנה לדף הוספה כי עוד אין אינדקס */}
                     <Route path="/" element={<h1>Welcome to MisterToy</h1>} />
-                    <Route path="/toy" element={<h1>Toy Index (Coming Soon)</h1>} />
-
-                    {/* Routes עבור העמודים שיצרנו */}
+                    <Route path="/toy" element={<ToyIndex />} />
                     <Route path="/toy/edit" element={<ToyEdit />} />
                     <Route path="/toy/edit/:toyId" element={<ToyEdit />} />
                     <Route path="/toy/:toyId" element={<ToyDetails />} />
