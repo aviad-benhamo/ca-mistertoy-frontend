@@ -3,20 +3,13 @@ import { ToyIndex } from './pages/ToyIndex.jsx'
 import { ToyEdit } from './pages/ToyEdit.jsx'
 import { ToyDetails } from './pages/ToyDetails.jsx'
 import { UserMsg } from './cmps/UserMsg.jsx'
+import { AppHeader } from './cmps/AppHeader.jsx'
+
 
 function App() {
     return (
         <div className="main-app">
-            <header className="app-header">
-                <section className="header-container">
-                    <h1>MisterToy</h1>
-                    <nav>
-                        <Link to="/toy">Toys</Link> |
-                        <Link to="/toy/edit">Add Toy</Link>
-                    </nav>
-                </section>
-            </header>
-
+            <AppHeader />
             <main className="container">
                 <Routes>
                     <Route path="/" element={<h1>Welcome to MisterToy</h1>} />
