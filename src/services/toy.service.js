@@ -19,8 +19,8 @@ export const toyService = {
 _createToys()
 
 function query(filterBy = {}) {
-    console.log('toyService query received filter:', filterBy)
-
+    // Testing purposes
+    // console.log('toyService query received filter:', filterBy) 
 
     return storageService.query(STORAGE_KEY)
         .then(toys => {
@@ -68,6 +68,9 @@ function save(toy) {
         return storageService.put(STORAGE_KEY, toy)
     } else {
         toy.createdAt = Date.now()
+        if (!toy.imgUrl) {
+            toy.imgUrl = `https://robohash.org/${toy.name}?set=set4`
+        }
         return storageService.post(STORAGE_KEY, toy)
     }
 }

@@ -2,6 +2,7 @@ import { Route, Routes, Link } from 'react-router-dom'
 import { ToyIndex } from './pages/ToyIndex.jsx'
 import { ToyEdit } from './pages/ToyEdit.jsx'
 import { ToyDetails } from './pages/ToyDetails.jsx'
+import { UserMsg } from './cmps/UserMsg.jsx'
 
 function App() {
     return (
@@ -25,6 +26,7 @@ function App() {
                     <Route path="/toy/:toyId" element={<ToyDetails />} />
                 </Routes>
             </main>
+            <UserMsg />
         </div>
     )
 }

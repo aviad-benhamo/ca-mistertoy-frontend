@@ -31,12 +31,13 @@ export function ToyDetails() {
 
             <div className="toy-img">
                 <img
-                    src={toy.imgUrl || 'https://via.placeholder.com/150'}
+                    src={toy.imgUrl || `https://robohash.org/${toy.name}?set=set4`}
                     alt={toy.name}
                     onError={({ currentTarget }) => {
                         currentTarget.onerror = null;
-                        currentTarget.src = 'https://via.placeholder.com/150';
+                        currentTarget.src = `https://robohash.org/${toy.name}?set=set4`;
                     }}
+                    style={{ maxWidth: '100%' }}
                 />
             </div>
 

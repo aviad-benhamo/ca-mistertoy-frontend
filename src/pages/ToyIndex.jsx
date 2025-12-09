@@ -23,6 +23,7 @@ export function ToyIndex() {
         removeToy(toyId)
             .then(() => {
                 showSuccessMsg('Toy removed')
+                console.log('Toy removed, id:', toyId)
             })
             .catch(err => {
                 showErrorMsg('Cannot remove toy')
@@ -40,6 +41,7 @@ export function ToyIndex() {
 
             <ToyFilter filterBy={filterBy} onSetFilter={onSetFilter} />
             <ToyList toys={toys} onRemoveToy={onRemoveToy} />
+
         </section>
     )
 }
