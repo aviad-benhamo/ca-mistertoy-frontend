@@ -2,11 +2,22 @@ import { useEffect, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { toyService } from '../services/toy.service.js'
 import { showErrorMsg } from '../services/event-bus.service.js'
+import { Popup } from '../cmps/Popup'
+import { Chat } from '../cmps/Chat'
+
 
 export function ToyDetails() {
     const [toy, setToy] = useState(null)
+    const [isOpen, setIsOpen] = useState(false)
     const { toyId } = useParams()
     const navigate = useNavigate()
+
+    useEffect(() => {
+        window.addEventListener('keyup', handleIsOpen)
+        return () => {
+            window.removeEventListener('keyup', handleIsOpen)
+        }
+    }, [])
 
     useEffect(() => {
         loadToy()
@@ -21,6 +32,12 @@ export function ToyDetails() {
                 navigate('/toy')
             })
     }
+
+    function handleIsOpen({ key }) {
+        if (key === 'Escape') setIsOpen(false)
+    }
+
+
 
     if (!toy) return <div>Loading...</div>
     return (
@@ -55,8 +72,23 @@ export function ToyDetails() {
 
             <div className="actions">
                 <Link to={`/toy/edit/${toy._id}`}>Edit</Link>
-                <Link to="/toy">Back to List</Link>
+
+
+                <Link className="btn" to="/toy">Back</Link>
+                <button className="btn" onClick={() => { setIsOpen(true) }} >
+                    Chat
+                </button>
             </div>
-        </section>
+            {isOpen && (
+                <Popup
+                    isOpen={isOpen}
+                    onClose={() => setIsOpen(false)}
+                    heading="Lets chat!"
+                    footing={<button className="btn" onClick={() => setIsOpen(false)}>Close</button>}
+                >
+                    <Chat />
+                </Popup>
+            )}
+        </section >
     )
 }

@@ -2,14 +2,6 @@ import { Link } from 'react-router-dom'
 
 export function ToyPreview({ toy }) {
 
-    function getIcon(type) {
-        switch (type) {
-            case 'Action': return <span style={{ fontSize: '40px' }}>🚀</span>
-            case 'Educational': return <span style={{ fontSize: '40px' }}>🧩</span>
-            case 'Funny': return <span style={{ fontSize: '40px' }}>📦</span>
-            default: return <span style={{ fontSize: '40px' }}>🚗</span>
-        }
-    }
 
     return (
         <article className="toy-preview">
@@ -17,8 +9,16 @@ export function ToyPreview({ toy }) {
                 <h4>{toy.name}</h4>
             </header>
 
-            <div style={{ marginBlock: '10px', color: '#555' }}>
-                {getIcon(toy.type)}
+            <div className="toy-img">
+                <img
+                    src={toy.imgUrl || `https://robohash.org/${toy.name}?set=set4`}
+                    alt={toy.name}
+                    onError={({ currentTarget }) => {
+                        currentTarget.onerror = null;
+                        currentTarget.src = `https://robohash.org/${toy.name}?set=set4`;
+                    }}
+                    style={{ maxWidth: '100%' }}
+                />
             </div>
 
             <p>Price: ${toy.price}</p>

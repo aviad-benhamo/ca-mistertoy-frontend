@@ -12,6 +12,8 @@
 @import 'cmps/AppHeader.css';
 @import 'cmps/AppFooter.css';
 @import 'cmps/UserMsg.css';
+@import 'cmps/Popup.css';
+@import 'cmps/Chat.css';
 
 /* Toy Components  */
 @import 'cmps/ToyIndex.css';
