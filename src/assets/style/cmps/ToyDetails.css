@@ -35,3 +35,10 @@
     color: red;
     font-weight: bold;
 }
+
+.toy-details .actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+}

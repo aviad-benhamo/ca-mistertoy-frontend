@@ -71,10 +71,10 @@ export function ToyDetails() {
             </p>
 
             <div className="actions">
-                <Link to={`/toy/edit/${toy._id}`}>Edit</Link>
+                <Link to={`/toy/edit/${toy._id}`}><button>Edit</button></Link>
 
 
-                <Link className="btn" to="/toy">Back</Link>
+                <Link className="btn" to="/toy"><button>Back</button></Link>
                 <button className="btn" onClick={() => { setIsOpen(true) }} >
                     Chat
                 </button>
