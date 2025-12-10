@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef } from "react"
 import { utilService } from "../services/util.service.js"
 import { toyService } from "../services/toy.service.js"
+import { FormControl, InputLabel, MenuItem, Select, TextField } from "@mui/material"
 
 export function ToyFilter({ filterBy, onSetFilter }) {
 
@@ -59,49 +60,56 @@ export function ToyFilter({ filterBy, onSetFilter }) {
 
             <div className="filter-row" style={{ display: 'flex', gap: '15px', alignItems: 'end', flexWrap: 'wrap' }}>
 
-                <div className="filter-group">
-                    <label htmlFor="name">Name:</label>
-                    <input
-                        type="text"
+                {/* material-ui    */}
+                <div className="filter-group" style={{ display: 'flex', alignItems: 'center' }}>
+                    <label htmlFor="name" style={{ marginRight: '5px' }}>Name:</label>
+                    <TextField
+                        variant="outlined"
+                        size="small"
                         id="name"
                         name="name"
                         placeholder="Search by name..."
                         value={filterByToEdit.name}
                         onChange={handleChange}
-                        style={{ padding: '5px' }}
+                        style={{ backgroundColor: 'white' }}
                     />
                 </div>
 
-                <div className="filter-group">
-                    <label htmlFor="inStock">Stock:</label>
-                    <select
-                        name="inStock"
-                        id="inStock"
-                        value={filterByToEdit.inStock === '' ? '' : filterByToEdit.inStock.toString()}
-                        onChange={handleChange}
-                        style={{ padding: '5px' }}
-                    >
-                        <option value="">All</option>
-                        <option value="true">In Stock</option>
-                        <option value="false">Out of Stock</option>
-                    </select>
+                <div className="filter-group" style={{ display: 'flex', alignItems: 'center' }}>
+                    <label htmlFor="inStock" style={{ marginRight: '5px' }}>Stock:</label>
+                    <FormControl size="small" style={{ minWidth: '120px', backgroundColor: 'white' }}>
+                        <Select
+                            id="inStock"
+                            name="inStock"
+                            value={filterByToEdit.inStock === '' ? '' : filterByToEdit.inStock.toString()}
+                            onChange={handleChange}
+                            displayEmpty
+                        >
+                            <MenuItem value="">All</MenuItem>
+                            <MenuItem value="true">In Stock</MenuItem>
+                            <MenuItem value="false">Out of Stock</MenuItem>
+                        </Select>
+                    </FormControl>
                 </div>
 
-                <div className="filter-group">
-                    <label htmlFor="sortBy">Sort:</label>
-                    <select
-                        name="sortBy"
-                        id="sortBy"
-                        value={filterByToEdit.sortBy || ''}
-                        onChange={handleChange}
-                        style={{ padding: '5px' }}
-                    >
-                        <option value="">None</option>
-                        <option value="name">Name</option>
-                        <option value="price">Price</option>
-                        <option value="createdAt">Created</option>
-                    </select>
+                <div className="filter-group" style={{ display: 'flex', alignItems: 'center' }}>
+                    <label htmlFor="sortBy" style={{ marginRight: '5px' }}>Sort:</label>
+                    <FormControl size="small" style={{ minWidth: '120px', backgroundColor: 'white' }}>
+                        <Select
+                            id="sortBy"
+                            name="sortBy"
+                            value={filterByToEdit.sortBy || ''}
+                            onChange={handleChange}
+                            displayEmpty
+                        >
+                            <MenuItem value="">None</MenuItem>
+                            <MenuItem value="name">Name</MenuItem>
+                            <MenuItem value="price">Price</MenuItem>
+                            <MenuItem value="createdAt">Created</MenuItem>
+                        </Select>
+                    </FormControl>
                 </div>
+
             </div>
 
             <div className="filter-labels" style={{ marginTop: '10px' }}>

@@ -29,7 +29,7 @@ function query(filterBy = {}) {
                 toys = toys.filter(toy => regExp.test(toy.name))
             }
 
-            if (filterBy.inStock !== undefined && filterBy.inStock !== '' && filterBy.inStock !== 'all') {
+            if (filterBy.inStock !== undefined && filterBy.inStock !== '') {
                 const isInStock = (filterBy.inStock === 'true' || filterBy.inStock === true)
                 toys = toys.filter(toy => toy.inStock === isInStock)
             }
@@ -87,7 +87,7 @@ function getEmptyToy() {
 }
 
 function getDefaultFilter() {
-    return { txt: '', inStock: 'all', labels: [] }
+    return { txt: '', inStock: '', labels: [] }
 }
 
 function getLabels() {
