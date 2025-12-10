@@ -2,10 +2,12 @@ import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { loadToys } from '../store/actions/toy.actions.js'
 import { toyService } from '../services/toy.service.js'
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js"
-import { Doughnut } from "react-chartjs-2"
+import { Chart as ChartJS, ArcElement, Tooltip, Legend, CategoryScale, LinearScale, PointElement, LineElement, Title } from "chart.js"
+import { Doughnut, Line } from "react-chartjs-2"
+import { utilService } from '../services/util.service.js'
 
-ChartJS.register(ArcElement, Tooltip, Legend);
+ChartJS.register(ArcElement, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
+
 
 export function ToyDashboard() {
     const toys = useSelector(storeState => storeState.toyModule.toys)
@@ -77,6 +79,42 @@ export function ToyDashboard() {
         }],
     }
 
+    const lineOptions = {
+        responsive: true,
+        plugins: {
+            legend: {
+                position: 'top',
+            },
+            title: {
+                display: true,
+                text: 'Sales Over Time (Mock Data)',
+            },
+        },
+    };
+
+    const lineLabels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+
+    const lineChartData = {
+        labels: lineLabels,
+        datasets: [
+            {
+                label: 'Sales 2024',
+                data: lineLabels.map(() => utilService.getRandomIntInclusive(0, 1000)),
+
+                borderColor: 'rgb(255, 99, 132)',
+                backgroundColor: 'rgba(255, 99, 132, 0.5)',
+            },
+            {
+                label: 'Sales 2025',
+                data: lineLabels.map(() => utilService.getRandomIntInclusive(0, 1000)),
+                borderColor: 'rgb(53, 162, 235)',
+                backgroundColor: 'rgba(53, 162, 235, 0.5)',
+            },
+        ],
+    }
+
+
+
     return (
         <section className="toy-dashboard">
             <h2>Toy Dashboard</h2>
@@ -93,6 +131,10 @@ export function ToyDashboard() {
                     <Doughnut data={inventoryChartData} />
                 </div>
 
+                <div className="chart-container" style={{ width: '60%', minWidth: '300px', marginTop: '40px' }}>
+                    <h3 style={{ textAlign: 'center' }}>Sales Analytics</h3>
+                    <Line options={lineOptions} data={lineChartData} />
+                </div>
             </div>
         </section>
     )
