@@ -11,6 +11,7 @@ export function AppHeader() {
                     <NavLink to="/">Home</NavLink> |
                     <NavLink to="/toy"> Toys</NavLink> |
                     <NavLink to="/toy/dashboard"> Dashboard</NavLink>
+                    | <NavLink to="/toy/about"> About</NavLink>
 
                 </nav>
                 <p>{isOnline ? '✅ Online' : '❌ Disconnected'}</p>

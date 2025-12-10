@@ -112,9 +112,9 @@ export function ToyEdit() {
                 )}
 
                 {/* Labels Field (Custom handling) */}
-                <div className="labels-container">
+                <div className="filter-labels" style={{ marginTop: '10px' }}>
                     <label>Labels:</label>
-                    <div className="labels-list">
+                    <div style={{ display: 'flex', flexWrap: 'nowrap', gap: '15px', marginTop: '5px' }} className="labels-list">
                         {labels.map(label => (
                             <div key={label} className="label-item">
                                 <input

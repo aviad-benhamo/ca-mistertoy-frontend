@@ -5,6 +5,7 @@ import { ToyDetails } from './pages/ToyDetails.jsx'
 import { UserMsg } from './cmps/UserMsg.jsx'
 import { AppHeader } from './cmps/AppHeader.jsx'
 import { ToyDashboard } from './pages/ToyDashboard.jsx'
+import { About } from './pages/About.jsx'
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
                     <Route path="/toy/edit/:toyId" element={<ToyEdit />} />
                     <Route path="/toy/:toyId" element={<ToyDetails />} />
                     <Route path="/toy/dashboard" element={<ToyDashboard />} />
+                    <Route path="/toy/about" element={<About />} />
                 </Routes>
             </main>
             <UserMsg />
