@@ -5,6 +5,8 @@ import { loadToys, removeToy, setFilterBy } from '../store/actions/toy.actions.j
 import { ToyList } from '../cmps/ToyList.jsx'
 import { ToyFilter } from '../cmps/ToyFilter.jsx'
 import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service.js'
+import { Button } from '@mui/material'
+import AddIcon from '@mui/icons-material/Add'
 
 export function ToyIndex() {
     const toys = useSelector(storeState => storeState.toyModule.toys)
@@ -34,9 +36,22 @@ export function ToyIndex() {
         <section className="toy-index">
             <div className="flex justify-between align-center" style={{ marginBottom: '20px' }}>
                 <h2>Toy Inventory</h2>
-                <Link to="/toy/edit" className="add-btn button flex align-center">
-                    <span style={{ marginRight: '5px', fontSize: '16px' }}>➕</span> Add Toy
-                </Link>
+                <Button
+                    variant="contained"
+                    color="primary"
+                    size="small"
+                    startIcon={<AddIcon />}
+                    component={Link}
+                    to="/toy/edit"
+                    sx={{
+                        backgroundColor: '#087f81',
+                        '&:hover': {
+                            backgroundColor: '#066b6d',
+                        }
+                    }}
+                >
+                    Add Toy
+                </Button>
             </div>
 
             <ToyFilter filterBy={filterBy} onSetFilter={onSetFilter} />
