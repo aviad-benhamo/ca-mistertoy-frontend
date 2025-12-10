@@ -69,7 +69,7 @@ export function ToyFilter({ filterBy, onSetFilter }) {
                         id="name"
                         name="name"
                         placeholder="Search by name..."
-                        value={filterByToEdit.name}
+                        value={filterByToEdit.name || ''}
                         onChange={handleChange}
                         style={{ backgroundColor: 'white' }}
                     />

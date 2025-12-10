@@ -1,15 +1,18 @@
 import { useEffect, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
+import { useFormik } from 'formik'
+import * as Yup from 'yup'
+
 import { toyService } from '../services/toy.service.js'
 import { saveToy } from '../store/actions/toy.actions.js'
 import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service.js'
 import { useConfirmTabClose } from '../hooks/useConfirmTabClose'
 
 export function ToyEdit() {
-    const [toyToEdit, setToyToEdit] = useState(toyService.getEmptyToy())
     const navigate = useNavigate()
     const { toyId } = useParams()
     const setHasUnsavedChanges = useConfirmTabClose()
+    const [toyToEdit, setToyToEdit] = useState(toyService.getEmptyToy())
 
     // Load available labels from service
     const labels = toyService.getLabels()
@@ -27,63 +30,88 @@ export function ToyEdit() {
             })
     }
 
-    function handleChange({ target }) {
-        let { value, type, name: field } = target
-        value = type === 'number' ? +value : value
-        value = type === 'checkbox' ? target.checked : value
+    const validationSchema = Yup.object({
+        name: Yup.string().required('Name is required'),
+        price: Yup.number().required('Price is required').min(1, 'Price must be positive'),
+        inStock: Yup.boolean()
+    })
 
-        setToyToEdit((prevToy) => ({ ...prevToy, [field]: value }))
-        setHasUnsavedChanges(true)
-    }
+    const formik = useFormik({
+        initialValues: toyToEdit,
+        enableReinitialize: true, // Important because toyToEdit is loaded asynchronously
+        validationSchema,
+        onSubmit: (values) => {
+            saveToy(values)
+                .then((savedToy) => {
+                    showSuccessMsg(`Toy Saved (id: ${savedToy._id})`)
+                    navigate('/toy')
+                })
+                .catch(err => {
+                    showErrorMsg('Cannot save toy')
+                    console.log('err:', err)
+                })
+        }
+    })
+
+    // Update unsaved changes status when form is dirty
+    useEffect(() => {
+        // Only set dirty if the form has been touched or modified
+        if (formik.dirty) {
+            setHasUnsavedChanges(true)
+        }
+    }, [formik.dirty, setHasUnsavedChanges])
 
     function onLabelChange(label) {
-        setToyToEdit(prevToy => {
-            const labels = prevToy.labels.includes(label)
-                ? prevToy.labels.filter(l => l !== label)
-                : [...prevToy.labels, label]
-            return { ...prevToy, labels }
-        })
-        setHasUnsavedChanges(true)
+        const currentLabels = formik.values.labels || []
+        const newLabels = currentLabels.includes(label)
+            ? currentLabels.filter(l => l !== label)
+            : [...currentLabels, label]
+
+        formik.setFieldValue('labels', newLabels)
     }
 
-    function onSaveToy(ev) {
-        ev.preventDefault()
-        saveToy(toyToEdit)
-            .then((savedToy) => {
-                showSuccessMsg(`Toy Saved (id: ${savedToy._id})`)
-                navigate('/toy')
-            })
-            .catch(err => {
-                showErrorMsg('Cannot save toy')
-                console.log('err:', err)
-            })
+    // Determine if inputs should mark the form as dirty immediately
+    function handleGenericChange(e) {
+        formik.handleChange(e)
     }
 
     return (
         <section className="toy-edit">
-            <h2>{toyToEdit._id ? 'Edit Toy' : 'Add Toy'}</h2>
+            <h2>{formik.values._id ? 'Edit Toy' : 'Add Toy'}</h2>
 
-            <form onSubmit={onSaveToy}>
+            <form onSubmit={formik.handleSubmit}>
+
+                {/* Name Field */}
                 <label htmlFor="name">Name:</label>
                 <input
                     type="text"
                     name="name"
                     id="name"
                     placeholder="Enter toy name..."
-                    value={toyToEdit.name}
-                    onChange={handleChange}
+                    value={formik.values.name}
+                    onChange={handleGenericChange}
+                    onBlur={formik.handleBlur}
                 />
+                {formik.touched.name && formik.errors.name && (
+                    <div className="error-msg" style={{ color: 'red' }}>{formik.errors.name}</div>
+                )}
 
+                {/* Price Field */}
                 <label htmlFor="price">Price:</label>
                 <input
                     type="number"
                     name="price"
                     id="price"
                     placeholder="Enter price"
-                    value={toyToEdit.price || ''}
-                    onChange={handleChange}
+                    value={formik.values.price || ''}
+                    onChange={handleGenericChange}
+                    onBlur={formik.handleBlur}
                 />
+                {formik.touched.price && formik.errors.price && (
+                    <div className="error-msg" style={{ color: 'red' }}>{formik.errors.price}</div>
+                )}
 
+                {/* Labels Field (Custom handling) */}
                 <div className="labels-container">
                     <label>Labels:</label>
                     <div className="labels-list">
@@ -92,7 +120,7 @@ export function ToyEdit() {
                                 <input
                                     type="checkbox"
                                     id={`label-${label}`}
-                                    checked={toyToEdit.labels.includes(label)}
+                                    checked={formik.values.labels?.includes(label) || false}
                                     onChange={() => onLabelChange(label)}
                                 />
                                 <label htmlFor={`label-${label}`}>{label}</label>
@@ -101,19 +129,22 @@ export function ToyEdit() {
                     </div>
                 </div>
 
+                {/* In Stock Field */}
                 <div className="in-stock-container">
                     <label htmlFor="inStock">In Stock:</label>
                     <input
                         type="checkbox"
                         name="inStock"
                         id="inStock"
-                        checked={toyToEdit.inStock}
-                        onChange={handleChange}
+                        checked={formik.values.inStock}
+                        onChange={handleGenericChange}
                     />
                 </div>
 
                 <div className="actions">
-                    <button>{toyToEdit._id ? 'Save' : 'Add'}</button>
+                    <button type="submit" disabled={!formik.isValid || !formik.dirty}>
+                        {formik.values._id ? 'Save' : 'Add'}
+                    </button>
                     <Link to="/toy">Cancel</Link>
                 </div>
             </form>

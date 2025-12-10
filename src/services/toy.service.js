@@ -1,10 +1,24 @@
 import { storageService } from './async-storage.service.js'
 import { utilService } from './util.service.js'
+import * as Yup from 'yup'
 
 const STORAGE_KEY = 'toyDB'
 
 const labels = ['On wheels', 'Box game', 'Art', 'Baby', 'Doll', 'Puzzle',
     'Outdoor', 'Battery Powered']
+
+const toySchema = Yup.object().shape({
+    name: Yup.string()
+        .min(2, 'Too Short!')
+        .max(50, 'Too Long!')
+        .required('Name is required'),
+    price: Yup.number()
+        .min(1, 'Price must be positive')
+        .max(1000, 'Too expensive!')
+        .required('Price is required'),
+    labels: Yup.array().min(1, 'Select at least one label'),
+    inStock: Yup.boolean()
+})
 
 export const toyService = {
     query,
