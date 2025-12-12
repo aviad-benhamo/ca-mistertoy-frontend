@@ -55,14 +55,13 @@ export function ToyFilter({ filterBy, onSetFilter }) {
     }
 
     return (
-        <section className="toy-filter" style={{ background: '#f8f8f8', padding: '10px', borderRadius: '5px', marginBottom: '20px' }}>
+        <section className="toy-filter">
             <h3>Filter Toys</h3>
 
-            <div className="filter-row" style={{ display: 'flex', gap: '15px', alignItems: 'end', flexWrap: 'wrap' }}>
+            <div className="filter-row">
 
-                {/* material-ui    */}
-                <div className="filter-group" style={{ display: 'flex', alignItems: 'center' }}>
-                    <label htmlFor="name" style={{ marginRight: '5px' }}>Name:</label>
+                {/* Name Filter */}
+                <div className="filter-group">
                     <TextField
                         variant="outlined"
                         size="small"
@@ -71,13 +70,14 @@ export function ToyFilter({ filterBy, onSetFilter }) {
                         placeholder="Search by name..."
                         value={filterByToEdit.name || ''}
                         onChange={handleChange}
-                        style={{ backgroundColor: 'white' }}
+                        sx={{ backgroundColor: 'white' }}
                     />
                 </div>
 
-                <div className="filter-group" style={{ display: 'flex', alignItems: 'center' }}>
-                    <label htmlFor="inStock" style={{ marginRight: '5px' }}>Stock:</label>
-                    <FormControl size="small" style={{ minWidth: '120px', backgroundColor: 'white' }}>
+                {/* Stock Filter */}
+                <div className="filter-group">
+                    <label htmlFor="inStock">Stock:</label>
+                    <FormControl size="small" sx={{ minWidth: 120, backgroundColor: 'white' }}>
                         <Select
                             id="inStock"
                             name="inStock"
@@ -92,9 +92,10 @@ export function ToyFilter({ filterBy, onSetFilter }) {
                     </FormControl>
                 </div>
 
-                <div className="filter-group" style={{ display: 'flex', alignItems: 'center' }}>
-                    <label htmlFor="sortBy" style={{ marginRight: '5px' }}>Sort:</label>
-                    <FormControl size="small" style={{ minWidth: '120px', backgroundColor: 'white' }}>
+                {/* Sort Filter */}
+                <div className="filter-group">
+                    <label htmlFor="sortBy">Sort:</label>
+                    <FormControl size="small" sx={{ minWidth: 120, backgroundColor: 'white' }}>
                         <Select
                             id="sortBy"
                             name="sortBy"
@@ -112,18 +113,18 @@ export function ToyFilter({ filterBy, onSetFilter }) {
 
             </div>
 
-            <div className="filter-labels" style={{ marginTop: '10px' }}>
+            <div className="filter-labels">
                 <label>Labels:</label>
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', marginTop: '5px' }}>
+                <div className="labels-list">
                     {labels.map(label => (
-                        <div key={label} style={{ display: 'flex', alignItems: 'center', gap: '5px', background: '#fff', padding: '2px 8px', borderRadius: '10px', border: '1px solid #ddd' }}>
+                        <div key={label} className="label-item">
                             <input
                                 type="checkbox"
                                 id={`filter-label-${label}`}
                                 checked={(filterByToEdit.labels || []).includes(label)}
                                 onChange={() => onLabelChange(label)}
                             />
-                            <label htmlFor={`filter-label-${label}`} style={{ cursor: 'pointer', fontSize: '0.9em' }}>{label}</label>
+                            <label htmlFor={`filter-label-${label}`}>{label}</label>
                         </div>
                     ))}
                 </div>

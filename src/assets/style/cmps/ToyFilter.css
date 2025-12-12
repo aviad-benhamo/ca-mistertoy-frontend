@@ -1,23 +1,52 @@
 .toy-filter {
-    background-color: var(--clr1bg-light);
-    padding: 1.5em;
-    border-radius: 8px;
-    margin-bottom: 2em;
-    display: flex;
-    align-items: center;
-    gap: 1em;
-    flex-wrap: wrap;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-}
+    background-color: #f8f8f8;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 20px;
 
-.toy-filter label {
-    margin-right: 0.5em;
-    font-weight: bold;
-}
+    >h3 {
+        margin-block-end: 1em;
+    }
 
-.toy-filter input,
-.toy-filter select {
-    padding: 0.5em;
-    border: 1px solid var(--gray2);
-    border-radius: 4px;
+    >.filter-row {
+        display: flex;
+        gap: 15px;
+        align-items: flex-end;
+        flex-wrap: wrap;
+
+        >.filter-group {
+            display: flex;
+            align-items: center;
+
+            >label {
+                margin-right: 5px;
+            }
+        }
+    }
+
+    >.filter-labels {
+        margin-top: 10px;
+
+        >.labels-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 5px;
+
+            >.label-item {
+                display: flex;
+                align-items: center;
+                gap: 5px;
+                background: #fff;
+                padding: 2px 8px;
+                border-radius: 10px;
+                border: 1px solid #ddd;
+
+                >label {
+                    cursor: pointer;
+                    font-size: 0.9em;
+                }
+            }
+        }
+    }
 }
