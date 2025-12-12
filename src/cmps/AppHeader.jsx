@@ -6,17 +6,18 @@ export function AppHeader() {
 
     return (
         <section className="app-header">
-            <section className="nav-wrapper flex justify-between">
-                <nav>
-                    <NavLink to="/">Home</NavLink> |
-                    <NavLink to="/toy"> Toys</NavLink> |
-                    <NavLink to="/toy/dashboard"> Dashboard</NavLink>
-                    | <NavLink to="/toy/about"> About</NavLink>
-
-                </nav>
-                <p>{isOnline ? '✅ Online' : '❌ Disconnected'}</p>
-            </section>
             <div className="logo">Mister Toy</div>
+
+            <nav className="main-nav">
+                <NavLink to="/">Home</NavLink>
+                <NavLink to="/toy" end> Toys</NavLink>
+                <NavLink to="/toy/dashboard"> Dashboard</NavLink>
+                <NavLink to="/toy/about"> About</NavLink>
+            </nav>
+
+            <p className="user-status">
+                {isOnline ? '✅ Online' : '❌ Disconnected'}
+            </p>
         </section>
     )
 }
