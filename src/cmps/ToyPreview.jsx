@@ -1,6 +1,13 @@
 import { Link } from 'react-router-dom'
+import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
+import ModeEditOutlineOutlinedIcon from '@mui/icons-material/ModeEditOutlineOutlined';
+import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
 
-export function ToyPreview({ toy }) {
+import Tooltip from '@mui/material/Tooltip'; // חובה לייבא
+import IconButton from '@mui/material/IconButton';
+
+
+export function ToyPreview({ toy, onRemoveToy }) {
 
 
     return (
@@ -15,7 +22,7 @@ export function ToyPreview({ toy }) {
                     alt={toy.name}
                     onError={({ currentTarget }) => {
                         currentTarget.onerror = null;
-                        currentTarget.src = `https://robohash.org/${toy.name}?set=set4`;
+                        currentTarget.src = `https://robohash.org/${toy.name}?set=set4`
                     }}
                     style={{ maxWidth: '100%' }}
                 />
@@ -27,13 +34,53 @@ export function ToyPreview({ toy }) {
                 {toy.inStock ? 'In Stock' : 'Out of Stock'}
             </p>
 
-            <div className="actions flex justify-center" style={{ gap: '10px', marginTop: '10px' }}>
-                <Link to={`/toy/${toy._id}`} title="Details" className="btn-link" style={{ fontSize: '20px', textDecoration: 'none' }}>
-                    ℹ️
-                </Link>
-                <Link to={`/toy/edit/${toy._id}`} title="Edit" className="btn-link" style={{ fontSize: '20px', textDecoration: 'none' }}>
-                    ✏️
-                </Link>
+
+            <div className="actions flex justify-center align-center" style={{ gap: '10px', marginTop: '10px' }}>
+
+                {/* Details Button */}
+                <Tooltip title="Details">
+                    <IconButton
+                        component={Link}
+                        to={`/toy/${toy._id}`}
+                        color="primary"
+                        aria-label="details"
+                    >
+                        <InfoOutlinedIcon />
+                    </IconButton>
+                </Tooltip>
+
+                {/* Edit Button */}
+                <Tooltip title="Edit">
+                    <IconButton
+                        component={Link}
+                        to={`/toy/edit/${toy._id}`}
+                        color="primary"
+                        aria-label="edit"
+                    >
+                        <ModeEditOutlineOutlinedIcon />
+                    </IconButton>
+                </Tooltip>
+
+                {/* Delete Button */}
+                <Tooltip title="Delete">
+                    <IconButton
+                        onClick={() => onRemoveToy(toy._id)}
+                        aria-label="delete"
+                    >
+                        <DeleteOutlineOutlinedIcon
+                            sx={{
+                                color: 'var(--clr2bg)',
+                                cursor: 'pointer',
+                                transition: '0.2s',
+                                '&:hover': {
+                                    color: 'var(--clr2bg-light)',
+                                    transform: 'scale(1.1)'
+                                }
+                            }}
+                        />
+                    </IconButton>
+                </Tooltip>
+
             </div>
         </article>
     )

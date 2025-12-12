@@ -5,18 +5,18 @@
     gap: 2.1em;
     padding: 0;
     margin-block: 1.5em;
-}
 
-.toy-list li {
-    background-color: white;
-    border: 1px solid var(--gray2);
-    border-radius: 8px;
-    padding: 1em;
-    transition: transform 0.2s;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-}
+    >li {
+        background-color: white;
+        border: 1px solid var(--gray2);
+        border-radius: 8px;
+        padding: 1em;
+        transition: transform 0.2s;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
 
-.toy-list li:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        &:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+    }
 }

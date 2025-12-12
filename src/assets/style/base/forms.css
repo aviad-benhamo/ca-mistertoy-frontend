@@ -12,6 +12,7 @@ button:hover {
     color: white;
     transition: .3s;
 }
+
 input:focus {
     background-color: var(--clr1bg);
     transition: background-color 1s;
