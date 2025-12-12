@@ -1,14 +1,7 @@
 .toy-index {
     position: relative;
-}
 
-.toy-index .add-btn {
-    margin-bottom: 1em;
-    background-color: var(--clr1);
-    color: white;
-}
-
-.toy-index .add-btn:hover {
-    background-color: var(--clr1bg);
-    color: var(--clr1);
+    >.action-bar {
+        margin-bottom: 20px;
+    }
 }

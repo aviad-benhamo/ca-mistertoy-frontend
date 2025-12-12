@@ -34,7 +34,7 @@ export function ToyIndex() {
 
     return (
         <section className="toy-index">
-            <div className="flex justify-between align-center" style={{ marginBottom: '20px' }}>
+            <div className="flex justify-between align-center action-bar">
                 <h2>Toy Inventory</h2>
                 <Button
                     variant="contained"

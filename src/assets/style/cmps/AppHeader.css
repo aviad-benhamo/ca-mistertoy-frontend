@@ -1,6 +1,6 @@
 .app-header {
     display: grid;
-    grid-template-columns: 1fr minmax(auto, 768px) 1fr;
+    grid-template-columns: minmax(10px, 1fr) minmax(auto, 768px) 1fr;
     grid-template-rows: 1fr;
     align-items: center;
     background-color: var(--clr1, #2c3e50);
