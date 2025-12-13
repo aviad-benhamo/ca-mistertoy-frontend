@@ -115,7 +115,16 @@ function _createToys() {
             _createToy('Talking Doll', 123, ['Doll', 'Battery Powered', 'Baby']),
             _createToy('Remote Car', 50, ['On wheels', 'Battery Powered']),
             _createToy('Puzzle Box', 35, ['Box game', 'Puzzle']),
-            _createToy('Teddy Bear', 80, ['Doll', 'Baby'])
+            _createToy('Teddy Bear', 80, ['Doll', 'Baby']),
+            _createToy('Art Kit', 45, ['Art']),
+            _createToy('Talking Doll', 123, ['Doll', 'Battery Powered', 'Baby']),
+            _createToy('Remote Car', 50, ['On wheels', 'Battery Powered']),
+            _createToy('Puzzle Box', 35, ['Box game', 'Puzzle']),
+            _createToy('Teddy Bear', 80, ['Doll', 'Baby']),
+            _createToy('Art Kit', 45, ['Art']),
+            _createToy('Outdoor Ball', 25, ['Outdoor']),
+            _createToy('Racer Bike', 300, ['On wheels', 'Outdoor']),
+            _createToy('Building Blocks', 60, ['Baby', 'Puzzle']),
         ]
         utilService.saveToStorage(STORAGE_KEY, toys)
     }
@@ -128,7 +137,7 @@ function _createToy(name, price, labels) {
         price,
         labels,
         createdAt: Date.now(),
-        inStock: true,
+        inStock: Math.random() > 0.3 ? true : false,
         imgUrl: `https://robohash.org/${name}?set=set4`
     }
 }

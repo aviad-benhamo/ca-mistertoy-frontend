@@ -4,6 +4,7 @@ import { toyService } from '../services/toy.service.js'
 import { showErrorMsg } from '../services/event-bus.service.js'
 import { Popup } from '../cmps/Popup'
 import { Chat } from '../cmps/Chat'
+import { CircularProgress } from '@mui/material'
 
 
 export function ToyDetails() {
@@ -39,7 +40,11 @@ export function ToyDetails() {
 
 
 
-    if (!toy) return <div>Loading...</div>
+    if (!toy) return (
+        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '50vh' }}>
+            <CircularProgress style={{ color: 'var(--clr1)' }} />
+        </div>
+    )
     return (
         <section className="toy-details">
             <h1>Toy Details</h1>

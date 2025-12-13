@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { loadToys, removeToy, setFilterBy } from '../store/actions/toy.actions.js'
@@ -11,7 +11,7 @@ import AddIcon from '@mui/icons-material/Add'
 export function ToyIndex() {
     const toys = useSelector(storeState => storeState.toyModule.toys)
     const filterBy = useSelector(storeState => storeState.toyModule.filterBy)
-
+    const isLoading = useSelector(storeState => storeState.toyModule.isLoading)
     useEffect(() => {
         loadToys()
             .catch(err => showErrorMsg('Cannot load toys'))
@@ -55,8 +55,10 @@ export function ToyIndex() {
             </div>
 
             <ToyFilter filterBy={filterBy} onSetFilter={onSetFilter} />
-            <ToyList toys={toys} onRemoveToy={onRemoveToy} />
-
+            <ToyList
+                toys={toys}
+                onRemoveToy={onRemoveToy}
+                isLoading={isLoading} />
         </section>
     )
 }
