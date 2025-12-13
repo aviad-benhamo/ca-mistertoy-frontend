@@ -38,3 +38,12 @@ input:focus {
     color: white;
     transition: .3s;
 }
+
+/* ToyEdit buttons styles */
+.actions button:disabled {
+    background-color: var(--gray2);
+    color: var(--gray1);
+    border-color: var(--gray2);
+    cursor: not-allowed;
+    opacity: 0.7;
+}
