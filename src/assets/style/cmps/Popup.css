@@ -1,33 +1,76 @@
 .popup-overlay {
-  position: fixed;
-  inset: 0;
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    .popup-container {
+        background-color: #fff;
+        width: 100%;
+        max-width: 400px;
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: var(--shadow);
+        display: flex;
+        flex-direction: column;
+        animation: slideIn 0.3s ease-out;
 
-  background: rgba(0, 0, 0, 0.5);
-  z-index: 1000;
+        .popup-header {
+            background-color: var(--clr-teal);
+            color: #fff;
+            padding: 16px 24px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-align: center;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .popup-main {
+            padding: 0;
+            flex-grow: 1;
+            min-height: 300px;
+            background-color: #fff;
+        }
+
+        .popup-footer {
+            padding: 12px 24px;
+            background-color: var(--gray1);
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+            display: flex;
+            justify-content: flex-end;
+
+            button {
+                background: transparent;
+                border: 1px solid var(--gray2);
+                color: var(--gray3);
+                padding: 6px 16px;
+                border-radius: 6px;
+                cursor: pointer;
+                transition: 0.2s;
+                font-size: 0.9rem;
+
+                &:hover {
+                    background-color: var(--gray2);
+                    color: white;
+                }
+            }
+        }
+    }
 }
 
-.popup-container {
-  min-width: 300px;
-  max-width: 500px;
-  padding: 20px;
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
 
-  background: white;
-  border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  text-align: center;
-  animation: fadeIn 0.3s ease-in-out;
-}
-
-.popup-header,
-.popup-footer {
-  padding: 10px;
-  font-weight: bold;
-}
-
-.popup-main {
-  padding: 15px;
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }

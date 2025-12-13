@@ -75,7 +75,7 @@ export function ToyDetails() {
 
                 <Link to="/toy"><button className="btn-back">Back</button></Link>
                 <button onClick={() => { setIsOpen(true) }} >
-                    Chat
+                    Get Help
                 </button>
             </div>
             {isOpen && (

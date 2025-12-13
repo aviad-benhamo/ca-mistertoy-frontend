@@ -14,4 +14,9 @@
     --gray1: rgb(240, 240, 240);
     --gray2: rgb(155, 155, 155);
     --gray3: rgb(44, 44, 44);
+
+    /* Popup & Chat Specifics */
+    --clr-teal: #00796b;
+    --clr-orange: #ffa000;
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
 }
