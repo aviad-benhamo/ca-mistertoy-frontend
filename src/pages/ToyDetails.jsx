@@ -54,7 +54,6 @@ export function ToyDetails() {
                         currentTarget.onerror = null;
                         currentTarget.src = `https://robohash.org/${toy.name}?set=set4`;
                     }}
-                    style={{ maxWidth: '100%' }}
                 />
             </div>
 
@@ -63,7 +62,7 @@ export function ToyDetails() {
             </p>
 
             <p>
-                <strong>In Stock:</strong> {toy.inStock ? 'Yes' : 'No'}
+                <strong>In Stock:</strong> {toy.inStock ? <span className="in-stock">Yes</span> : <span className="out-of-stock">No</span>}
             </p>
 
             <p>
@@ -71,11 +70,11 @@ export function ToyDetails() {
             </p>
 
             <div className="actions">
-                <Link to={`/toy/edit/${toy._id}`}><button>Edit</button></Link>
+                <Link to={`/toy/edit/${toy._id}`}><button className="btn-edit">Edit</button></Link>
 
 
-                <Link className="btn" to="/toy"><button>Back</button></Link>
-                <button className="btn" onClick={() => { setIsOpen(true) }} >
+                <Link to="/toy"><button className="btn-back">Back</button></Link>
+                <button onClick={() => { setIsOpen(true) }} >
                     Chat
                 </button>
             </div>

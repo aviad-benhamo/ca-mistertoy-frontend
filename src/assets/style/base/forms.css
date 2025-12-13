@@ -4,7 +4,7 @@ button {
     margin: 0.5em;
     border: 0;
     padding: 0.5em 0.8em;
-    border-radius: 4px;   
+    border-radius: 4px;
 }
 
 button:hover {
@@ -16,4 +16,25 @@ button:hover {
 input:focus {
     background-color: var(--clr1bg);
     transition: background-color 1s;
+}
+
+
+/* ToyDetails buttons styles */
+.btn-back,
+.btn-edit {
+    cursor: pointer;
+    background-color: var(--gray2);
+    color: white;
+    margin: 0.5em;
+    border: 0;
+    padding: 0.5em 0.8em;
+    border-radius: 4px;
+
+}
+
+.btn-back:hover,
+.btn-edit:hover {
+    background-color: var(--gray3);
+    color: white;
+    transition: .3s;
 }
