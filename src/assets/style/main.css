@@ -22,6 +22,7 @@
 @import 'cmps/ToyPreview.css';
 @import 'cmps/ToyEdit.css';
 @import 'cmps/ToyDetails.css';
+@import 'cmps/LoginSignup.css';
 
 .app {
     display: flex;

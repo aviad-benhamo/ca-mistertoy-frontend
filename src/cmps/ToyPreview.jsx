@@ -1,14 +1,15 @@
 import { Link } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import ModeEditOutlineOutlinedIcon from '@mui/icons-material/ModeEditOutlineOutlined';
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
 
-import Tooltip from '@mui/material/Tooltip'; // חובה לייבא
+import Tooltip from '@mui/material/Tooltip';
 import IconButton from '@mui/material/IconButton';
 
 
 export function ToyPreview({ toy, onRemoveToy }) {
-
+    const user = useSelector(storeState => storeState.userModule.loggedInUser)
 
     return (
         <article className="toy-preview">
@@ -49,37 +50,40 @@ export function ToyPreview({ toy, onRemoveToy }) {
                     </IconButton>
                 </Tooltip>
 
-                {/* Edit Button */}
-                <Tooltip title="Edit">
-                    <IconButton
-                        component={Link}
-                        to={`/toy/edit/${toy._id}`}
-                        color="primary"
-                        aria-label="edit"
-                    >
-                        <ModeEditOutlineOutlinedIcon />
-                    </IconButton>
-                </Tooltip>
+                {/* Edit & Delete - Only for Admin */}
+                {user && user.isAdmin && (
+                    <>
+                        <Tooltip title="Edit">
+                            <IconButton
+                                component={Link}
+                                to={`/toy/edit/${toy._id}`}
+                                color="primary"
+                                aria-label="edit"
+                            >
+                                <ModeEditOutlineOutlinedIcon />
+                            </IconButton>
+                        </Tooltip>
 
-                {/* Delete Button */}
-                <Tooltip title="Delete">
-                    <IconButton
-                        onClick={() => onRemoveToy(toy._id)}
-                        aria-label="delete"
-                    >
-                        <DeleteOutlineOutlinedIcon
-                            sx={{
-                                color: 'var(--clr2bg)',
-                                cursor: 'pointer',
-                                transition: '0.2s',
-                                '&:hover': {
-                                    color: 'var(--clr2bg-light)',
-                                    transform: 'scale(1.1)'
-                                }
-                            }}
-                        />
-                    </IconButton>
-                </Tooltip>
+                        <Tooltip title="Delete">
+                            <IconButton
+                                onClick={() => onRemoveToy(toy._id)}
+                                aria-label="delete"
+                            >
+                                <DeleteOutlineOutlinedIcon
+                                    sx={{
+                                        color: 'var(--clr2bg)',
+                                        cursor: 'pointer',
+                                        transition: '0.2s',
+                                        '&:hover': {
+                                            color: 'var(--clr2bg-light)',
+                                            transform: 'scale(1.1)'
+                                        }
+                                    }}
+                                />
+                            </IconButton>
+                        </Tooltip>
+                    </>
+                )}
 
             </div>
         </article>

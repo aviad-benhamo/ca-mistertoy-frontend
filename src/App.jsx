@@ -6,7 +6,7 @@ import { UserMsg } from './cmps/UserMsg.jsx'
 import { AppHeader } from './cmps/AppHeader.jsx'
 import { ToyDashboard } from './pages/ToyDashboard.jsx'
 import { About } from './pages/About.jsx'
-
+import { LoginSignup } from './pages/LoginSignup.jsx'
 
 function App() {
     return (
@@ -21,6 +21,7 @@ function App() {
                     <Route path="/toy/:toyId" element={<ToyDetails />} />
                     <Route path="/toy/dashboard" element={<ToyDashboard />} />
                     <Route path="/toy/about" element={<About />} />
+                    <Route path="/login" element={<LoginSignup />} />
                 </Routes>
             </main>
             <UserMsg />

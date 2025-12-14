@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 import { toyService } from '../services/toy.service.js'
 import { showErrorMsg } from '../services/event-bus.service.js'
 import { Popup } from '../cmps/Popup'
@@ -12,7 +13,7 @@ export function ToyDetails() {
     const [isOpen, setIsOpen] = useState(false)
     const { toyId } = useParams()
     const navigate = useNavigate()
-
+    const user = useSelector(storeState => storeState.userModule.loggedInUser)
     useEffect(() => {
         window.addEventListener('keyup', handleIsOpen)
         return () => {
@@ -77,7 +78,10 @@ export function ToyDetails() {
             </p>
 
             <div className="actions">
-                <Link to={`/toy/edit/${toy._id}`}><button className="btn-edit">Edit</button></Link>
+                {/* Only Admin can edit */}
+                {user && user.isAdmin && (
+                    <Link to={`/toy/edit/${toy._id}`}><button className="btn-edit">Edit</button></Link>
+                )}
 
 
                 <Link to="/toy"><button className="btn-back">Back</button></Link>
