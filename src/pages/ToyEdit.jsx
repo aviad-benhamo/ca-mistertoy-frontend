@@ -21,13 +21,14 @@ export function ToyEdit() {
         if (toyId) loadToy()
     }, [toyId])
 
-    function loadToy() {
-        toyService.getById(toyId)
-            .then(toy => setToyToEdit(toy))
-            .catch(err => {
-                console.log('Had issues in toy details', err)
-                navigate('/toy')
-            })
+    async function loadToy() {
+        try {
+            const toy = await toyService.getById(toyId)
+            setToyToEdit(toy)
+        } catch (err) {
+            console.log('Had issues in toy details', err)
+            navigate('/toy')
+        }
     }
 
     const validationSchema = Yup.object({
@@ -38,18 +39,17 @@ export function ToyEdit() {
 
     const formik = useFormik({
         initialValues: toyToEdit,
-        enableReinitialize: true, // Important because toyToEdit is loaded asynchronously
+        enableReinitialize: true,
         validationSchema,
-        onSubmit: (values) => {
-            saveToy(values)
-                .then((savedToy) => {
-                    showSuccessMsg(`Toy Saved (id: ${savedToy._id})`)
-                    navigate('/toy')
-                })
-                .catch(err => {
-                    showErrorMsg('Cannot save toy')
-                    console.log('err:', err)
-                })
+        onSubmit: async (values) => {
+            try {
+                const savedToy = await saveToy(values)
+                showSuccessMsg(`Toy Saved (id: ${savedToy._id})`)
+                navigate('/toy')
+            } catch (err) {
+                showErrorMsg('Cannot save toy')
+                console.log('err:', err)
+            }
         }
     })
 

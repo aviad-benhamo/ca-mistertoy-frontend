@@ -13,23 +13,28 @@ export function ToyIndex() {
     const filterBy = useSelector(storeState => storeState.toyModule.filterBy)
     const isLoading = useSelector(storeState => storeState.toyModule.isLoading)
     useEffect(() => {
-        loadToys()
-            .catch(err => showErrorMsg('Cannot load toys'))
+        async function fetchData() {
+            try {
+                await loadToys()
+            } catch (err) {
+                showErrorMsg('Cannot load toys')
+            }
+        }
+        fetchData()
     }, [filterBy])
 
     function onSetFilter(filterBy) {
         setFilterBy(filterBy)
     }
 
-    function onRemoveToy(toyId) {
-        removeToy(toyId)
-            .then(() => {
-                showSuccessMsg('Toy removed')
-                console.log('Toy removed, id:', toyId)
-            })
-            .catch(err => {
-                showErrorMsg('Cannot remove toy')
-            })
+    async function onRemoveToy(toyId) {
+        try {
+            await removeToy(toyId)
+            showSuccessMsg('Toy removed')
+            console.log('Toy removed, id:', toyId)
+        } catch (err) {
+            showErrorMsg('Cannot remove toy')
+        }
     }
 
     return (
