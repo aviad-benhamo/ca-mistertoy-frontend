@@ -88,7 +88,7 @@ export function ToyEdit() {
                     name="name"
                     id="name"
                     placeholder="Enter toy name..."
-                    value={formik.values.name}
+                    value={formik.values.name || ''}
                     onChange={handleGenericChange}
                     onBlur={formik.handleBlur}
                 />
@@ -103,7 +103,7 @@ export function ToyEdit() {
                     name="price"
                     id="price"
                     placeholder="Enter price"
-                    value={formik.values.price || ''}
+                    value={formik.values.price !== undefined && formik.values.price !== null ? formik.values.price : ''}
                     onChange={handleGenericChange}
                     onBlur={formik.handleBlur}
                 />
@@ -136,7 +136,7 @@ export function ToyEdit() {
                         type="checkbox"
                         name="inStock"
                         id="inStock"
-                        checked={formik.values.inStock}
+                        checked={formik.values.inStock || false}
                         onChange={handleGenericChange}
                     />
                 </div>
