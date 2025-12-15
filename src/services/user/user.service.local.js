@@ -9,6 +9,7 @@ export const userService = {
     signup,
     getById,
     getLoggedinUser,
+    getEmptyCredentials
 }
 
 async function getById(userId) {
@@ -72,3 +73,10 @@ function _setLoggedinUser(user) {
     return userToSave
 }
 
+function getEmptyCredentials() {
+    return {
+        username: '',
+        password: '',
+        fullname: ''
+    }
+}

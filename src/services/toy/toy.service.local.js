@@ -25,7 +25,9 @@ export const toyService = {
     getById,
     save,
     remove,
-    getLabels
+    getLabels,
+    getEmptyToy,
+    getDefaultFilter
 }
 
 _createToys()
@@ -123,5 +125,24 @@ function _createToy(name, price, labels) {
         createdAt: Date.now(),
         inStock: Math.random() > 0.3 ? true : false,
         imgUrl: `https://robohash.org/${name}?set=set4`
+    }
+}
+
+function getEmptyToy() {
+    return {
+        name: '',
+        price: 0,
+        labels: [],
+        createdAt: Date.now(),
+        inStock: true,
+        imgUrl: ''
+    }
+}
+
+function getDefaultFilter() {
+    return {
+        txt: '',
+        inStock: '',
+        labels: []
     }
 }
