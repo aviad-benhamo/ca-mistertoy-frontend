@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { loadToys } from '../store/actions/toy.actions.js'
-import { toyService } from '../services/toy.service.js'
+import { toyService } from '../services/toy'
 import { Chart as ChartJS, ArcElement, Tooltip, Legend, CategoryScale, LinearScale, PointElement, LineElement, Title } from "chart.js"
 import { Doughnut, Line } from "react-chartjs-2"
 import { utilService } from '../services/util.service.js'

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-import { toyService } from '../services/toy.service.js'
+import { toyService } from '../services/toy'
 import { showErrorMsg } from '../services/event-bus.service.js'
 import { Popup } from '../cmps/Popup'
 import { Chat } from '../cmps/Chat'

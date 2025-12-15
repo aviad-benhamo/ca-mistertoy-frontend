@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { login, signup } from '../store/actions/user.actions.js'
 import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service.js'
-import { userService } from '../services/user.service.js'
+import { userService } from '../services/user'
 
 export function LoginSignup() {
     const [isSignup, setIsSignup] = useState(false)

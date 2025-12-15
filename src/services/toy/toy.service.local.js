@@ -1,5 +1,5 @@
-import { storageService } from './async-storage.service.js'
-import { utilService } from './util.service.js'
+import { storageService } from '../async-storage.service.js'
+import { utilService } from '../util.service.js'
 import * as Yup from 'yup'
 
 const STORAGE_KEY = 'toyDB'
@@ -25,8 +25,6 @@ export const toyService = {
     getById,
     save,
     remove,
-    getEmptyToy,
-    getDefaultFilter,
     getLabels
 }
 
@@ -70,7 +68,6 @@ async function query(filterBy = {}) {
     }
 }
 
-
 function getById(toyId) {
     return storageService.get(STORAGE_KEY, toyId)
 }
@@ -89,21 +86,6 @@ function save(toy) {
         }
         return storageService.post(STORAGE_KEY, toy)
     }
-}
-
-function getEmptyToy() {
-    return {
-        name: '',
-        price: 0,
-        labels: [],
-        createdAt: Date.now(),
-        inStock: true,
-        imgUrl: ''
-    }
-}
-
-function getDefaultFilter() {
-    return { txt: '', inStock: '', labels: [] }
 }
 
 function getLabels() {

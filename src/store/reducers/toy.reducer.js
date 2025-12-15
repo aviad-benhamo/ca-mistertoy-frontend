@@ -1,4 +1,4 @@
-import { toyService } from "../../services/toy.service.js"
+import { toyService } from "../../services/toy"
 
 export const SET_TOYS = 'SET_TOYS'
 export const REMOVE_TOY = 'REMOVE_TOY'

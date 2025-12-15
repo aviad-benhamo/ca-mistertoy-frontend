@@ -3,7 +3,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
 
-import { toyService } from '../services/toy.service.js'
+import { toyService } from '../services/toy'
 import { saveToy } from '../store/actions/toy.actions.js'
 import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service.js'
 import { useConfirmTabClose } from '../hooks/useConfirmTabClose'
