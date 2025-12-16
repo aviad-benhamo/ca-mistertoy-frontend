@@ -7,6 +7,7 @@
     margin: 2em auto;
     text-align: center;
 
+
     >h1 {
         color: var(--clr1);
         font-size: 2.5em;
@@ -45,6 +46,83 @@
         justify-content: center;
         align-items: center;
         gap: 1em;
+        margin-top: 10px;
     }
 
+    .toy-msgs {
+        margin-top: 2em;
+        text-align: left;
+        border-top: 1px solid #eee;
+        padding-top: 1em;
+
+        h3 {
+            font-size: 1.2em;
+            margin-bottom: 0.5em;
+        }
+
+        .msg-form {
+            display: flex;
+            gap: 0.5em;
+            margin-bottom: 1em;
+            align-items: center;
+
+            input {
+                flex-grow: 1;
+                padding: 0.5em;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+            }
+        }
+
+        .msg-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            border: 1px solid #f0f0f0;
+            border-radius: 6px;
+            overflow: hidden;
+
+            li {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 0.8em;
+                border-bottom: 1px solid #f0f0f0;
+                background-color: #fcfcfc;
+                gap: 1em;
+
+                &:last-child {
+                    border-bottom: none;
+                }
+
+                h4 {
+                    margin: 0;
+                    font-weight: 600;
+                    color: var(--clr1);
+                    min-width: 80px;
+                }
+
+                p {
+                    margin: 0;
+                    flex-grow: 1;
+                    color: #555;
+                }
+
+                .btn-remove-msg {
+                    background: transparent;
+                    border: none;
+                    color: #999;
+                    cursor: pointer;
+                    font-size: 1.2em;
+                    line-height: 1;
+                    padding: 0 5px;
+                    transition: color 0.2s;
+
+                    &:hover {
+                        color: red;
+                    }
+                }
+            }
+        }
+    }
 }
