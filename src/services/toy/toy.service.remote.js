@@ -8,6 +8,7 @@ export const toyService = {
     save,
     remove,
     addMsg,
+    removeMsg,
     getLabels,
     getEmptyToy,
     getDefaultFilter
@@ -36,6 +37,10 @@ function save(toy) {
 
 function addMsg(toyId, txt) {
     return httpService.post(BASE_URL + toyId + '/msg', { txt })
+}
+
+function removeMsg(toyId, msgId) {
+    return httpService.delete(BASE_URL + toyId + '/msg/' + msgId)
 }
 
 function getLabels() {

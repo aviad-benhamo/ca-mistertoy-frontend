@@ -5,7 +5,8 @@ export const REMOVE_TOY = 'REMOVE_TOY'
 export const ADD_TOY = 'ADD_TOY'
 export const UPDATE_TOY = 'UPDATE_TOY'
 export const TOY_UNDO = 'TOY_UNDO'
-
+export const ADD_TOY_MSG = 'ADD_TOY_MSG'
+export const REMOVE_TOY_MSG = 'REMOVE_TOY_MSG'
 export const SET_FILTER_BY = 'SET_FILTER_BY'
 export const SET_IS_LOADING = 'SET_IS_LOADING'
 
@@ -39,6 +40,34 @@ export function toyReducer(state = initialState, action = {}) {
             return {
                 ...state,
                 toys: state.toys.map(toy => toy._id === action.toy._id ? action.toy : toy)
+            }
+
+        case ADD_TOY_MSG:
+            return {
+                ...state,
+                toys: state.toys.map(toy => {
+                    if (toy._id === action.toyId) {
+                        return {
+                            ...toy,
+                            msgs: [...(toy.msgs || []), action.msg]
+                        }
+                    }
+                    return toy
+                })
+            }
+
+        case REMOVE_TOY_MSG:
+            return {
+                ...state,
+                toys: state.toys.map(toy => {
+                    if (toy._id === action.toyId) {
+                        return {
+                            ...toy,
+                            msgs: toy.msgs.filter(msg => msg.id !== action.msgId)
+                        }
+                    }
+                    return toy
+                })
             }
 
         case TOY_UNDO:

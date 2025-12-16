@@ -2,14 +2,15 @@ import { useEffect, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { toyService } from '../services/toy'
-import { showErrorMsg } from '../services/event-bus.service.js'
+import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service.js'
 import { Popup } from '../cmps/Popup'
 import { Chat } from '../cmps/Chat'
+import { addToyMsg, removeToyMsg } from '../store/actions/toy.actions.js'
 import { CircularProgress } from '@mui/material'
-
 
 export function ToyDetails() {
     const [toy, setToy] = useState(null)
+    const [msgTxt, setMsgTxt] = useState('')
     const [isOpen, setIsOpen] = useState(false)
     const { toyId } = useParams()
     const navigate = useNavigate()
@@ -41,7 +42,35 @@ export function ToyDetails() {
         if (key === 'Escape') setIsOpen(false)
     }
 
+    async function onSaveMsg(ev) {
+        ev.preventDefault()
+        try {
+            const msg = await addToyMsg(toy._id, msgTxt)
+            // Update local state to show the new message immediately
+            setToy(prevToy => ({
+                ...prevToy,
+                msgs: [...(prevToy.msgs || []), msg]
+            }))
+            setMsgTxt('')
+            showSuccessMsg('Review added')
+        } catch (err) {
+            showErrorMsg('Cannot add review')
+        }
+    }
 
+    async function onRemoveMsg(msgId) {
+        try {
+            await removeToyMsg(toy._id, msgId)
+            setToy(prevToy => ({
+                ...prevToy,
+                msgs: prevToy.msgs.filter(msg => msg.id !== msgId)
+            }))
+            showSuccessMsg('Review removed')
+        } catch (err) {
+            console.error('Failed to remove review:', err)
+            showErrorMsg('Cannot remove review')
+        }
+    }
 
     if (!toy) return (
         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '50vh' }}>
@@ -76,6 +105,44 @@ export function ToyDetails() {
             <p>
                 <strong>Added at:</strong> {toy.createdAt ? new Date(toy.createdAt).toLocaleDateString() : 'N/A'}
             </p>
+
+            <div className="toy-msgs">
+                <h3>Reviews</h3>
+
+                {user && (
+                    <form className="msg-form" onSubmit={onSaveMsg}>
+                        <input
+                            type="text"
+                            name="msg"
+                            value={msgTxt}
+                            onChange={(e) => setMsgTxt(e.target.value)}
+                            placeholder="Your opinion?"
+                            required
+                        />
+                        <button>Add</button>
+                    </form>
+                )}
+
+                {!toy.msgs || !toy.msgs.length && <span>No reviews yet...</span>}
+
+                <ul className="msg-list clean-list">
+                    {toy.msgs && toy.msgs.map(msg => (
+                        <li key={msg.id}>
+                            <h4>{msg.by.fullname}</h4>
+                            <p>{msg.txt}</p>
+                            {user && (user._id === msg.by._id || user.isAdmin) && (
+                                <button
+                                    type="button"
+                                    className="btn-remove-msg"
+                                    onClick={() => onRemoveMsg(msg.id)}
+                                >
+                                    X
+                                </button>
+                            )}
+                        </li>
+                    ))}
+                </ul>
+            </div>
 
             <div className="actions">
                 {/* Only Admin can edit */}
