@@ -1,7 +1,7 @@
 import { AdvancedMarker, APIProvider, InfoWindow, Map, useAdvancedMarkerRef } from "@vis.gl/react-google-maps"
 import { useState } from "react"
 
-const API_KEY = 'AIzaSyA1qX9Kn2xBA8_sFoAhjwNPZqKkuMYVPpg'
+const API_KEY = import.meta.env.VITE_GOOGLE_MAPS_KEY
 
 export function About() {
     const [center, setCenter] = useState({ lat: 32.0853, lng: 34.7818 })
