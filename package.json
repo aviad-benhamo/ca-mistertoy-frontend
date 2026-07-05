@@ -1,5 +1,5 @@
 {
-    "name": "mistertoy-frontend",
+    "name": "ca-mistertoy-frontend",
     "private": true,
     "version": "0.0.0",
     "type": "module",
@@ -10,6 +10,8 @@
         "dev:local": "set VITE_LOCAL=true&&vite",
         "dev:local:mac": "export VITE_LOCAL=true && vite",
         "build": "vite build",
+        "sync:backend": "node scripts/sync-build-to-backend.mjs",
+        "build:backend": "npm run build && npm run sync:backend",
         "lint": "eslint .",
         "preview": "vite preview"
     },
