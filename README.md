@@ -42,3 +42,6 @@ npm run build
 
 This repository is still in a draft, pre-release state while GRS remediation
 and final verification continue.
+
+Release-readiness notes are documented in
+[docs/release-readiness.md](docs/release-readiness.md).
