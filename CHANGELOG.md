@@ -19,3 +19,7 @@ Every release must use a Git tag in the format `vMAJOR.MINOR.PATCH`.
 * Added the baseline GRS repository files for licensing, security policy,
   editor consistency, runtime version pinning, release history, and roadmap
   planning.
+* Added `.env.example` with placeholder-only frontend configuration guidance
+  for the Google Maps browser key.
+* Added `docs/local-development.md` to document local setup, service modes,
+  backend repository assumptions, and the sibling-folder build sync workflow.
