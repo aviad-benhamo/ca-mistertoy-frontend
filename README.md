@@ -3,21 +3,23 @@
 ## Badges
 
 [![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
-[![Status: Draft%20%2F%20Pre--Release](https://img.shields.io/badge/status-Draft%20%2F%20Pre--Release-orange.svg)](#project-status)
+[![Status: Approved%20v0.1.0%20Baseline](https://img.shields.io/badge/status-Approved%20v0.1.0%20Baseline-blue.svg)](#project-status)
 [![Quality](https://github.com/aviad-benhamo/ca-mistertoy-frontend/actions/workflows/quality.yml/badge.svg)](https://github.com/aviad-benhamo/ca-mistertoy-frontend/actions/workflows/quality.yml)
 [![Demo](https://img.shields.io/badge/demo-live%20site-blue.svg)](https://mistertoy-app.onrender.com/)
 
 ## Project Status
 
-- State: Draft / pre-release
+- State: Approved `v0.1.0` release baseline, pending tag and GitHub Release publication
 - Repository type: Coding Academy React and Vite frontend project
-- Current package version: `0.0.0`
-- Future release candidate: `0.1.0` only after final GRS verification
+- Current package version: `0.1.0`
+- Git tag status: No `v0.1.0` tag has been created yet
+- GitHub Release status: No GitHub Release has been published yet
 - Release policy: Semantic Versioning with `vMAJOR.MINOR.PATCH` Git tags when a release is eventually created
 
-This repository has completed a documentation and repository-baseline
-remediation pass, but it is still not treated as a published release-ready
-project.
+This repository has completed the documentation, repository-baseline, and
+release-preparation updates required for the approved `v0.1.0` baseline.
+Creating the Git tag and publishing the GitHub Release remain separate manual
+steps.
 
 ## Overview
 
@@ -254,13 +256,13 @@ Supporting documentation:
 
 ## Roadmap
 
-See [ROADMAP.md](ROADMAP.md) for the next repository-hardening milestones and
-the remaining path toward a future `0.1.0` release candidate.
+See [ROADMAP.md](ROADMAP.md) for the remaining follow-through after the
+approved `v0.1.0` documentation baseline.
 
 ## Changelog
 
-See [CHANGELOG.md](CHANGELOG.md) for the release history and the current
-`[Unreleased]` work queue.
+See [CHANGELOG.md](CHANGELOG.md) for the approved `0.1.0` release-ready
+history and the current `[Unreleased]` work queue.
 
 ## License
 

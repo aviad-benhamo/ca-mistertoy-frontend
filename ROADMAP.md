@@ -1,7 +1,7 @@
 # Roadmap
 
-This roadmap captures the remaining pre-release work for
-`ca-mistertoy-frontend` after the main GRS remediation pass.
+This roadmap captures the remaining follow-through after the approved
+`v0.1.0` documentation baseline for `ca-mistertoy-frontend`.
 
 ## Current State
 
@@ -10,34 +10,26 @@ This roadmap captures the remaining pre-release work for
   screenshot coverage, and release-readiness notes.
 - Production dependency remediation has been completed for the current
   high-severity audit findings.
-- The repository remains in a draft, pre-release state with package version
-  `0.0.0`.
+- The repository documentation and version references have been aligned to the
+  approved `0.1.0` baseline.
+- The package version has been updated to `0.1.0`.
 - No Git tag has been created, and no GitHub Release has been published.
+- `CHANGELOG.md`, `README.md`, and `docs/release-readiness.md` now reflect the
+  approved release state while keeping publication as a separate step.
 
 ## Remaining Near-Term Work
 
-### 1. Release Preparation Alignment
+### 1. Publication Step After Explicit Approval
 
-- Review release-facing documents together before any release approval:
-  `README.md`, `CHANGELOG.md`, `ROADMAP.md`, and `docs/release-readiness.md`.
-- Confirm that `[Unreleased]` reflects the intended initial release scope
-  without treating the repository as already published.
-- Keep release preparation separate from Git tag creation and GitHub Release
-  publishing.
+- Create the `v0.1.0` Git tag only when explicit approval is given for that
+  publication step.
+- Publish the matching GitHub Release only when explicit approval is given for
+  remote release publication.
+- Keep the tag format as `vMAJOR.MINOR.PATCH`.
 
-### 2. Final Release-Readiness Verification
+### 2. Post-Release Documentation Maintenance
 
-- Re-run the agreed validation baseline before any `v0.1.0` decision:
-  `npm run lint`, `npm run build`, and
-  `npm audit --omit=dev --audit-level=high`.
-- Confirm that repository documentation, demo references, and current quality
-  checks still match the actual project state.
-- Record the final recommendation on whether the repository is ready to move
-  into deliberate release preparation.
-
-### 3. Approved Release Follow-Through
-
-- If release preparation is explicitly approved, move the appropriate
-  `[Unreleased]` entries into a `0.1.0` section in `CHANGELOG.md`.
-- Create the `v0.1.0` Git tag and GitHub Release only as a separate,
-  deliberate step after approval.
+- Add future repository or product updates under `[Unreleased]` after the
+  `0.1.0` publication step is complete.
+- Revisit roadmap priorities after the initial release is published so the file
+  tracks new work rather than release-preparation history.

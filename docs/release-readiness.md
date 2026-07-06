@@ -1,30 +1,33 @@
 # Release Readiness
 
-This repository remains in a draft, pre-release state.
+This repository now has an approved `0.1.0` release baseline for documentation
+and version alignment.
 
 No Git tag has been created for this frontend repository, and no GitHub Release
 has been published.
 
 ## Current Status
 
-- Current package version remains `0.0.0` while the repository is still under
-  remediation and final verification.
-- `CHANGELOG.md` is the source of truth for pending release notes under
-  `[Unreleased]`.
-- The repository is not yet in a final release-ready state.
+- Current package version is `0.1.0`.
+- `CHANGELOG.md` now contains the approved `0.1.0` release-ready section.
+- The repository documentation has been aligned to the approved release state.
+- The release has not yet been published because tag creation and GitHub
+  Release publication remain separate manual steps.
 
-## Future Release Candidate
+## Approved Release Baseline
 
-The next intended version is `0.1.0`, but only as a future candidate after:
+The approved release version is `0.1.0`. The documentation baseline now
+assumes:
 
-- final GRS verification is complete
-- remaining repository remediation work is complete
-- the initial release scope is reviewed deliberately
+- release scope has been reviewed and accepted
+- release-facing repository documents have been aligned
+- the project uses the Git tag format `vMAJOR.MINOR.PATCH`
 
 ## Release Process Notes
 
-- Do not publish a GitHub Release as part of this baseline work.
-- Do not create a Git tag as part of this baseline work.
-- Keep new completed work under `[Unreleased]` until a deliberate release
-  preparation step moves it into a numbered version section.
-- Use the tag format `vMAJOR.MINOR.PATCH` when a release is eventually created.
+- Do not publish a GitHub Release unless that publication step is explicitly
+  approved.
+- Do not create a Git tag unless that tagging step is explicitly approved.
+- The required Git tag format remains `vMAJOR.MINOR.PATCH`.
+- Keep future work under `[Unreleased]` after the `0.1.0` publication step is
+  complete.
