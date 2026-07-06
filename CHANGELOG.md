@@ -47,6 +47,8 @@ grouped into a future initial release once final verification is complete.
 
 * Fixed the existing frontend lint baseline so the current repository checks
   pass locally before CI runs them.
+* Updated production dependency resolutions to remove high-severity frontend
+  audit findings from `axios`, `react-router-dom`, and Formik's Lodash chain.
 * Replaced the Vite template favicon with a project-specific MisterToy favicon
   and removed the unused React template asset.
 * Rewrote `README.md` into a project-specific GRS-aligned frontend README with
