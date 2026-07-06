@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
+  <title>MisterToy favicon</title>
+  <rect width="64" height="64" rx="14" fill="#0f8b8d"/>
+  <rect x="14" y="20" width="36" height="28" rx="6" fill="#f4d35e"/>
+  <rect x="22" y="12" width="20" height="12" rx="6" fill="#ee964b"/>
+  <circle cx="26" cy="34" r="3" fill="#5b4335"/>
+  <circle cx="38" cy="34" r="3" fill="#5b4335"/>
+  <path d="M24 42c3 4 13 4 16 0" fill="none" stroke="#5b4335" stroke-width="3" stroke-linecap="round"/>
+</svg>

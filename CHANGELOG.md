@@ -26,6 +26,8 @@ Every release must use a Git tag in the format `vMAJOR.MINOR.PATCH`.
   GitHub Pages is intentionally not the active demo target.
 * Added `docs/local-development.md` to document local setup, service modes,
   backend repository assumptions, and the sibling-folder build sync workflow.
+* Added GRS media assets documentation plus a representative local-mode
+  frontend screenshot under `assets/screenshots/` for future README use.
 * Added a GitHub Actions quality workflow that installs dependencies, runs
   lint, and verifies the production build.
 
@@ -33,3 +35,5 @@ Every release must use a Git tag in the format `vMAJOR.MINOR.PATCH`.
 
 * Fixed the existing frontend lint baseline so the current repository checks
   pass locally before CI runs them.
+* Replaced the Vite template favicon with a project-specific MisterToy favicon
+  and removed the unused React template asset.
