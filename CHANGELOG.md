@@ -21,6 +21,9 @@ Every release must use a Git tag in the format `vMAJOR.MINOR.PATCH`.
   planning.
 * Added `.env.example` with placeholder-only frontend configuration guidance
   for the Google Maps browser key.
+* Added deployment and demo documentation that records the approved Render live
+  site, clarifies the backend dependency for full functionality, and notes that
+  GitHub Pages is intentionally not the active demo target.
 * Added `docs/local-development.md` to document local setup, service modes,
   backend repository assumptions, and the sibling-folder build sync workflow.
 * Added a GitHub Actions quality workflow that installs dependencies, runs

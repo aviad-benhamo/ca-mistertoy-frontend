@@ -1,16 +1,44 @@
-# React + Vite
+# ca-mistertoy-frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Frontend application for the Coding Academy MisterToy project, built with
+React and Vite.
 
-Currently, two official plugins are available:
+## Live Demo
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Approved demo URL:
 
-## React Compiler
+`https://mistertoy-app.onrender.com/`
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+The Render deployment is the current canonical live demo for this repository.
+GitHub Pages is intentionally not used as an active demo target at this time.
 
-## Expanding the ESLint configuration
+## Deployment Notes
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- The production frontend expects backend API routes under the same origin at
+  `/api/`.
+- Full remote functionality depends on the backend being available behind that
+  production API path.
+- Local development can also run in `VITE_LOCAL=true` mode with in-memory
+  services for frontend-only work.
+- `VITE_GOOGLE_MAPS_KEY` must remain a browser-safe placeholder in committed
+  documentation and example files.
+
+## Local Development
+
+Project-specific setup, service modes, and backend integration notes are
+documented in [docs/local-development.md](docs/local-development.md).
+
+Common commands:
+
+```powershell
+npm install
+npm run dev
+npm run dev:local
+npm run lint
+npm run build
+```
+
+## Repository Status
+
+This repository is still in a draft, pre-release state while GRS remediation
+and final verification continue.
