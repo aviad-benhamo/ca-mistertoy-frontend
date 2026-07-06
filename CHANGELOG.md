@@ -49,3 +49,6 @@ grouped into a future initial release once final verification is complete.
   pass locally before CI runs them.
 * Replaced the Vite template favicon with a project-specific MisterToy favicon
   and removed the unused React template asset.
+* Rewrote `README.md` into a project-specific GRS-aligned frontend README with
+  demo, screenshot, configuration, backend-relationship, development, and
+  release-state documentation.
