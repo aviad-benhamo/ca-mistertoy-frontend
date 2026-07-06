@@ -22,7 +22,7 @@ async function getById(userId) {
     }
 }
 
-async function login({ username, password }) {
+async function login({ username }) {
     try {
         const users = await storageService.query(STORAGE_KEY)
         const user = users.find(user => user.username === username)

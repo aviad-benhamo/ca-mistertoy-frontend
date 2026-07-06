@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from "react"
+import { useRef, useState } from "react"
 import { utilService } from "../services/util.service.js"
 import { toyService } from "../services/toy"
 import { FormControl, InputLabel, MenuItem, Select, TextField } from "@mui/material"
@@ -10,10 +10,6 @@ export function ToyFilter({ filterBy, onSetFilter }) {
     const onSetFilterDebounce = useRef(utilService.debounce(onSetFilter, 500)).current
 
     const labels = toyService.getLabels()
-
-    useEffect(() => {
-        setFilterByToEdit({ ...filterBy })
-    }, [filterBy])
 
     function handleChange({ target }) {
         let { name, value, type, checked } = target

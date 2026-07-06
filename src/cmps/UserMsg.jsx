@@ -7,22 +7,25 @@ export function UserMsg() {
     const [msg, setMsg] = useState(null)
     const timeoutIdRef = useRef()
 
+    function closeMsg() {
+        setMsg(null)
+    }
+
     useEffect(() => {
         const unsubscribe = eventBusService.on('show-user-msg', (msg) => {
             setMsg(msg)
             // window.scrollTo({top: 0, behavior: 'smooth'});
             if (timeoutIdRef.current) {
-                timeoutIdRef.current = null
                 clearTimeout(timeoutIdRef.current)
+                timeoutIdRef.current = null
             }
             timeoutIdRef.current = setTimeout(closeMsg, 3000)
         })
-        return unsubscribe
+        return () => {
+            if (timeoutIdRef.current) clearTimeout(timeoutIdRef.current)
+            unsubscribe()
+        }
     }, [])
-
-    function closeMsg() {
-        setMsg(null)
-    }
 
     if (!msg) return <span></span>
     return (

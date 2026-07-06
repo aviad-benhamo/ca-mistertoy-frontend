@@ -14,7 +14,7 @@ export function AppHeader() {
             await logout()
             showSuccessMsg('Bye now')
             navigate('/login')
-        } catch (err) {
+        } catch {
             showErrorMsg('Cannot logout')
         }
     }

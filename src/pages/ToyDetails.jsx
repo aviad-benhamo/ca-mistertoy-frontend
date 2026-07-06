@@ -15,32 +15,32 @@ export function ToyDetails() {
     const { toyId } = useParams()
     const navigate = useNavigate()
     const user = useSelector(storeState => storeState.userModule.loggedInUser)
+
     useEffect(() => {
-        window.addEventListener('keyup', handleIsOpen)
+        function handleKeyUp({ key }) {
+            if (key === 'Escape') setIsOpen(false)
+        }
+
+        window.addEventListener('keyup', handleKeyUp)
         return () => {
-            window.removeEventListener('keyup', handleIsOpen)
+            window.removeEventListener('keyup', handleKeyUp)
         }
     }, [])
 
     useEffect(() => {
+        async function loadToy() {
+            try {
+                const toy = await toyService.getById(toyId)
+                setToy(toy)
+            } catch (err) {
+                console.log('Had issues in toy details', err)
+                showErrorMsg('Cannot load toy')
+                navigate('/toy')
+            }
+        }
+
         loadToy()
-    }, [toyId])
-
-    async function loadToy() {
-        try {
-            const toy = await toyService.getById(toyId)
-            setToy(toy)
-        }
-        catch (err) {
-            console.log('Had issues in toy details', err)
-            showErrorMsg('Cannot load toy')
-            navigate('/toy')
-        }
-    }
-
-    function handleIsOpen({ key }) {
-        if (key === 'Escape') setIsOpen(false)
-    }
+    }, [navigate, toyId])
 
     async function onSaveMsg(ev) {
         ev.preventDefault()
@@ -53,7 +53,7 @@ export function ToyDetails() {
             }))
             setMsgTxt('')
             showSuccessMsg('Review added')
-        } catch (err) {
+        } catch {
             showErrorMsg('Cannot add review')
         }
     }
@@ -88,8 +88,8 @@ export function ToyDetails() {
                     src={toy.imgUrl || `https://robohash.org/${toy.name}?set=set4`}
                     alt={toy.name}
                     onError={({ currentTarget }) => {
-                        currentTarget.onerror = null;
-                        currentTarget.src = `https://robohash.org/${toy.name}?set=set4`;
+                        currentTarget.onerror = null
+                        currentTarget.src = `https://robohash.org/${toy.name}?set=set4`
                     }}
                 />
             </div>

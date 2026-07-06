@@ -18,18 +18,18 @@ export function ToyEdit() {
     const labels = toyService.getLabels()
 
     useEffect(() => {
-        if (toyId) loadToy()
-    }, [toyId])
-
-    async function loadToy() {
-        try {
-            const toy = await toyService.getById(toyId)
-            setToyToEdit(toy)
-        } catch (err) {
-            console.log('Had issues in toy details', err)
-            navigate('/toy')
+        async function loadToy() {
+            try {
+                const toy = await toyService.getById(toyId)
+                setToyToEdit(toy)
+            } catch (err) {
+                console.log('Had issues in toy details', err)
+                navigate('/toy')
+            }
         }
-    }
+
+        if (toyId) loadToy()
+    }, [navigate, toyId])
 
     const validationSchema = Yup.object({
         name: Yup.string().required('Name is required'),

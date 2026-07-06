@@ -64,7 +64,7 @@ export function About() {
     )
 }
 
-function BranchMarker({ branch, onPanToBranch, isActive }) {
+function BranchMarker({ branch, onPanToBranch }) {
     const [markerRef, marker] = useAdvancedMarkerRef()
     const [infoWindowOpen, setInfoWindowOpen] = useState(false)
 

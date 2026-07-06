@@ -23,3 +23,10 @@ Every release must use a Git tag in the format `vMAJOR.MINOR.PATCH`.
   for the Google Maps browser key.
 * Added `docs/local-development.md` to document local setup, service modes,
   backend repository assumptions, and the sibling-folder build sync workflow.
+* Added a GitHub Actions quality workflow that installs dependencies, runs
+  lint, and verifies the production build.
+
+### Changed
+
+* Fixed the existing frontend lint baseline so the current repository checks
+  pass locally before CI runs them.

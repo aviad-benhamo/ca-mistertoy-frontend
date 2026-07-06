@@ -16,7 +16,7 @@ export function ToyIndex() {
         async function fetchData() {
             try {
                 await loadToys()
-            } catch (err) {
+            } catch {
                 showErrorMsg('Cannot load toys')
             }
         }
@@ -32,7 +32,7 @@ export function ToyIndex() {
             await removeToy(toyId)
             showSuccessMsg('Toy removed')
             console.log('Toy removed, id:', toyId)
-        } catch (err) {
+        } catch {
             showErrorMsg('Cannot remove toy')
         }
     }

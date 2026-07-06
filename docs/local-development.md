@@ -145,3 +145,18 @@ Build and sync into a sibling backend checkout:
 ```powershell
 npm run build:backend
 ```
+
+## Validation Commands
+
+Use these commands to verify the current frontend quality baseline locally:
+
+```powershell
+npm run lint
+npm run build
+```
+
+The repository also includes a GitHub Actions quality workflow that runs:
+
+- dependency installation with `npm ci`
+- `npm run lint`
+- `npm run build`
