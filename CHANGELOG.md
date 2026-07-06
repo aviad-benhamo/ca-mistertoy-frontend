@@ -49,6 +49,8 @@ grouped into a future initial release once final verification is complete.
   pass locally before CI runs them.
 * Updated production dependency resolutions to remove high-severity frontend
   audit findings from `axios`, `react-router-dom`, and Formik's Lodash chain.
+* Refreshed `ROADMAP.md` so it reflects the completed remediation baseline and
+  the remaining pre-release path toward a future `0.1.0` approval.
 * Replaced the Vite template favicon with a project-specific MisterToy favicon
   and removed the unused React template asset.
 * Rewrote `README.md` into a project-specific GRS-aligned frontend README with

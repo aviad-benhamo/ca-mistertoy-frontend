@@ -1,38 +1,43 @@
 # Roadmap
 
-This roadmap captures the next repository-hardening milestones for
-`ca-mistertoy-frontend`.
+This roadmap captures the remaining pre-release work for
+`ca-mistertoy-frontend` after the main GRS remediation pass.
 
-## Current Focus
+## Current State
 
-- Complete the public repository baseline files required by GRS.
-- Keep the existing frontend behavior stable while repository hygiene improves.
+- Core GRS repository baseline work is complete, including the README rewrite,
+  local setup documentation, changelog, security policy, CI quality workflow,
+  screenshot coverage, and release-readiness notes.
+- Production dependency remediation has been completed for the current
+  high-severity audit findings.
+- The repository remains in a draft, pre-release state with package version
+  `0.0.0`.
+- No Git tag has been created, and no GitHub Release has been published.
 
-## Next Milestones
+## Remaining Near-Term Work
 
-### 1. Environment and Setup Documentation
+### 1. Release Preparation Alignment
 
-- Document the local setup flow for the frontend and its backend dependency.
-- Document any required environment variables with placeholder values only.
+- Review release-facing documents together before any release approval:
+  `README.md`, `CHANGELOG.md`, `ROADMAP.md`, and `docs/release-readiness.md`.
+- Confirm that `[Unreleased]` reflects the intended initial release scope
+  without treating the repository as already published.
+- Keep release preparation separate from Git tag creation and GitHub Release
+  publishing.
 
-### 2. Validation Baseline
+### 2. Final Release-Readiness Verification
 
-- Fix the current lint errors without broad refactors.
-- Add a lightweight CI workflow that runs install, lint, and build checks.
+- Re-run the agreed validation baseline before any `v0.1.0` decision:
+  `npm run lint`, `npm run build`, and
+  `npm audit --omit=dev --audit-level=high`.
+- Confirm that repository documentation, demo references, and current quality
+  checks still match the actual project state.
+- Record the final recommendation on whether the repository is ready to move
+  into deliberate release preparation.
 
-### 3. Demo and Media Readiness
+### 3. Approved Release Follow-Through
 
-- Decide whether GitHub Pages is the approved demo target.
-- Add repository-managed screenshots under `assets/screenshots/` once the app
-  and demo state are ready.
-
-### 4. README Integration
-
-- Replace the default Vite template README with a project-specific GRS README.
-- Link the final README to the approved baseline files and demo assets.
-
-### 5. Release Preparation
-
-- Prepare the repository for an initial `0.1.0` release only after the
-  remaining approved GRS issues are complete.
-- Run the final GRS verification before any public release announcement.
+- If release preparation is explicitly approved, move the appropriate
+  `[Unreleased]` entries into a `0.1.0` section in `CHANGELOG.md`.
+- Create the `v0.1.0` Git tag and GitHub Release only as a separate,
+  deliberate step after approval.
